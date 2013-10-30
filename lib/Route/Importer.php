@@ -5,7 +5,7 @@ class Importer {
   public function getMenuItems() {
     $items = array();
     foreach (at_modules('at_route') as $module) {
-      $path = drupal_get_path('module', $module) . '/config/route.yml';
+      $path = DRUPAL_ROOT . '/' . drupal_get_path('module', $module) . '/config/route.yml';
       if (file_exists($path)) {
         $items += $this->importResource($module, $path);
       }
@@ -16,9 +16,11 @@ class Importer {
   private function importResource($module, $path) {
     $items = array();
     if ($data = at_config_read_yml($path)) {
-      foreach ($data['routes'] as $route_name => $route_data) {
-        if ($item = $this->importRoute($module, $route_name, $route_data)) {
-          $items[$route_name] = $item;
+      if (!empty($data['routes'])) {
+        foreach ($data['routes'] as $route_name => $route_data) {
+          if ($item = $this->importRoute($module, $route_name, $route_data)) {
+            $items[$route_name] = $item;
+          }
         }
       }
     }
@@ -84,7 +86,7 @@ class Importer {
 
     if (!empty($item['template'])) {
       $item['page callback'] = '\Drupal\at_route\Controller\DefaultController::fileTemplateAction';
-      $item['page arguments'] = array('template'  => $item['template'], 'variables' => $item['variables']);
+      $item['page arguments'] = array('template'  => $item['template'], 'variables' => !empty($item['variables']) ? $item['variables'] : array());
     }
 
     return $item;
