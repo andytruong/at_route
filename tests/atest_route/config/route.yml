@@ -1,17 +1,16 @@
 routes:
   atest_route/drupal:
-    title: Drupal
+    title: Hello
     title callback: t
     title arguments: []
     description: Description for the page
-    page callback: t
-    page arguments: ['Hello']
-    access callback: user_accesss
+    page callback: atest_route_page_callback
+    page arguments: ['Andy Truong']
+    access callback: user_access
     access arguments: ['access content']
     theme callback: trim # function_to_detect_theme_name
     theme arguments: [seven]
-    file: my_module.pages.inc
-    file path: path_to_module
+    file: atest_route.pages.inc
     load arguments: []
     weight: 0
     menu_menu: navigation

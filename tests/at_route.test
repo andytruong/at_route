@@ -1,2 +1,34 @@
 <?php
 
+class At_Route_TestCase extends DrupalWebTestCase {
+  public function getInfo() {
+    return array(
+      'name' => 'AT Route',
+      'description' => 'Make sure the at_route is working correctly.',
+      'group' => 'AT Route',
+    );
+  }
+
+  public function setUp() {
+    parent::setUp('atest_route');
+  }
+
+  public function testConfigGet() {
+    # Test /atest_route/drupal
+    $output = menu_execute_active_handler('atest_route/drupal', FALSE);
+    $this->assertEqual('Hello Andy Truong', $output);
+
+    # Test /atest_route/controller
+    $output = menu_execute_active_handler('atest_route/controller', FALSE);
+    $this->assertEqual('Hi Andy Truong!', $output);
+
+    # Test /atest_route/template
+    $output = menu_execute_active_handler('atest_route/template', FALSE);
+    $output = trim($output);
+    $this->assertEqual('Hello Andy Truong', $output);
+
+    # Test /atest_route/string_template
+    $output = menu_execute_active_handler('atest_route/string_template', FALSE);
+    $this->assertEqual('Hello Andy Truong', $output);
+  }
+}
