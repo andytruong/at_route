@@ -8,6 +8,10 @@ class DefaultController {
   }
 
   public static function fileTemplateAction($template_file, $variables) {
+    if (!function_exists('at_theming_render_template')) {
+      throw new \Exception('Missing at_theming module');
+    }
+
     return at_theming_render_template($template_file, $variables);
   }
 }
