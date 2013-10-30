@@ -33,14 +33,14 @@ before_script:
  - echo '#####################'
  - mkdir -p sites/all/libraries
  - cd sites/all/libraries
- - echo '# ---------------------- #'
- - echo '#  For at_config module  #'
- - echo '# ---------------------- #'
+ - echo ' ---------------------- '
+ - echo '  For at_config module  '
+ - echo ' ---------------------- '
  - composer require mustangostang/spyc:0.5.*
  - mv vendor/mustangostang/spyc ./
- - echo '# ----------------------- #'
- - echo '#  For at_theming module  #'
- - echo '# ----------------------- #'
+ - echo ' ----------------------- '
+ - echo '  For at_theming module  '
+ - echo ' ----------------------- '
  - composer require twig/twig:1.*
  - mv vendor/twig/twig ./
  - rm -rf ./vendor composer.*
