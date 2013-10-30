@@ -6,7 +6,7 @@ AT Config
 Faster way to define menu item in Drupal 7:
 
 ```yaml
-# %at_route/config/route.yml
+# %atest_route/config/route.yml
 routes:
   atest_route/drupal:
     title: Hello Drupal
