@@ -46,7 +46,7 @@ class Importer {
     $mapping = array(
       'no_convert'   => array(
         'title', 'title arguments', 'description', 'page callback', 'page arguments', 'access callback', 'access arguments', 'theme callback', 'theme arguments', 'file', 'file path', 'load arguments', 'weight', 'menu_menu', 'expanded', 'tab_parent', 'tab_root', 'position',
-        'template', 'controller', 'variables'
+        'template', 'template_string', 'controller', 'variables', 'pattern'
       ),
       'convert'      => array(
         'context'    => $parse_constant,
@@ -75,7 +75,9 @@ class Importer {
       }
     }
 
-    return !empty($item) ? $item + array('file path' => drupal_get_path('module', $module)) : array();
+    return !empty($item)
+      ? $item + array('pattern' => $route_name, 'file path' => drupal_get_path('module', $module))
+      : array();
   }
 
   private function prepareMagicProperties($item) {
@@ -87,6 +89,15 @@ class Importer {
     if (!empty($item['template'])) {
       $item['page callback'] = '\Drupal\at_route\Controller\DefaultController::fileTemplateAction';
       $item['page arguments'] = array('template'  => $item['template'], 'variables' => !empty($item['variables']) ? $item['variables'] : array());
+    }
+
+    if (!empty($item['template_string'])) {
+      $item['page callback'] = '\Drupal\at_route\Controller\DefaultController::fileTemplateStringAction';
+      $item['page arguments'] = array(
+        $item['pattern'],
+        $item['template_string'],
+        !empty($item['variables']) ? $item['variables'] : array()
+      );
     }
 
     return $item;

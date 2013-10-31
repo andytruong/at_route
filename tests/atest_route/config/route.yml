@@ -41,8 +41,8 @@ routes:
     variables:
         name: Andy Truong
 
-  atest_route/string_template:
-    title: String Template
+  atest_route/fancy_template/%user:
+    title: Fancy Template
     access arguments: ['access content']
-    page callback: at_theming_render_string_template
-    page arguments: ['Hello {{ name }}', {name: Andy Truong}]
+    template_string: '- Foo: {{ foo }}<br />- User ID: {{ user.uid }}<br />'
+    variables: { foo: 'bar' }
