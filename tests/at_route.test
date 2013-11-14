@@ -30,8 +30,8 @@ class At_Route_TestCase extends DrupalWebTestCase {
     # Test /atest_route/fancy_template/%user
     $_GET['q'] = 'atest_route/fancy_template/1';
     $output = menu_execute_active_handler('atest_route/fancy_template/1', FALSE);
+    $output = render($output);
     $this->assertTrue(strpos($output, 'Foo: bar'));
     $this->assertTrue(strpos($output, 'User ID: 1'));
-    $this->verbose($output);
   }
 }
