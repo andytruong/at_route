@@ -58,7 +58,7 @@ class RouteToMenu {
   }
 
   private function _prepareTemplateFile() {
-    $this->menu_item['page callback'] = '\Drupal\at_route\Controller\DefaultController::fileTemplateAction';
+    $this->menu_item['page callback'] = '\Drupal\at_route\Controller\DefaultController::templateFileAction';
     $this->menu_item['page arguments'] = array(
       'template'  => $this->menu_item['template'],
       'variables' => !empty($this->menu_item['variables']) ? $this->menu_item['variables'] : array(),
@@ -67,7 +67,7 @@ class RouteToMenu {
   }
 
   private function _prepareTemplateString() {
-    $this->menu_item['page callback'] = '\Drupal\at_route\Controller\DefaultController::fileTemplateStringAction';
+    $this->menu_item['page callback'] = '\Drupal\at_route\Controller\DefaultController::templateStringAction';
     $this->menu_item['page arguments'] = array(
       $this->menu_item['pattern'],
       $this->menu_item['template_string'],
