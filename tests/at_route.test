@@ -33,5 +33,11 @@ class At_Route_TestCase extends DrupalWebTestCase {
     $output = render($output);
     $this->assertTrue(strpos($output, 'Foo: bar'));
     $this->assertTrue(strpos($output, 'User ID: 1'));
+
+    # Test /atest_route/with_assets
+    $response = at_id(new \Drupal\at_base\Helper\SubRequest('atest_route/with_assets'))->request();
+    $this->assertTrue(in_array('misc/vertical-tabs.css', $response['#attached']['css']));
+    $this->assertTrue(in_array('misc/vertical-tabs.js', $response['#attached']['js']));
+    $this->assertTrue(in_array(array('system', 'jquery.bbq'), $response['#attached']['library']));
   }
 }
