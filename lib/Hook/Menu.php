@@ -11,14 +11,21 @@ class Menu {
    */
   private $importer;
 
-  /**
-   * [__construct description]
-   */
   public function __construct(Importer $importer) {
     $this->importer = $importer;
   }
 
+  /**
+   * Get all menu items.
+   */
   public function getMenuItems() {
-    return $this->importer->getMenuItems();
+    $items = array();
+    foreach (at_modules('at_route') as $module) {
+      $this->importer->setModule($module);
+      if ($this->importer->getConfigPath()) {
+        $items += $this->importer->import();
+      }
+    }
+    return $items;
   }
 }

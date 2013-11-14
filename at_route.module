@@ -1,4 +1,6 @@
 <?php
+use \Drupal\at_route\Route\Importer as RouteImporter;
+use \Drupal\at_route\Hook\Menu as HookMenu;
 
 /**
  * Implements hook_menu()
@@ -6,7 +8,6 @@
 function at_route_menu() {
   require_once dirname(__FILE__) . '/lib/Hook/Menu.php';
   require_once dirname(__FILE__) . '/lib/Route/Importer.php';
-
-  $importer = new Drupal\at_route\Route\Importer();
-  return at_id(new \Drupal\at_route\Hook\Menu($importer))->getMenuItems();
+  return at_id(new HookMenu($importer = new RouteImporter()))
+          ->getMenuItems();
 }
