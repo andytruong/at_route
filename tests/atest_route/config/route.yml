@@ -13,7 +13,7 @@ routes:
     file: atest_route.pages.inc
     load arguments: []
     weight: 0
-    menu_menu: navigation
+    menu_name: navigation
     expanded: TRUE
     context: MENU_CONTEXT_PAGE | MENU_CONTEXT_INLINE
     # For local task menu items, the path of the task's parent item; defaults
