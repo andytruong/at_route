@@ -24,7 +24,7 @@ class At_Route_TestCase extends DrupalWebTestCase {
 
     # Test /atest_route/template
     $output = menu_execute_active_handler('atest_route/template', FALSE);
-    $output = trim($output);
+    $output = trim(render($output));
     $this->assertEqual('Hello Andy Truong', $output);
 
     # Test /atest_route/fancy_template/%user
