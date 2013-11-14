@@ -46,7 +46,7 @@ class Importer {
     $mapping = array(
       'no_convert'   => array(
         'title', 'title arguments', 'description', 'page callback', 'page arguments', 'access callback', 'access arguments', 'theme callback', 'theme arguments', 'file', 'file path', 'load arguments', 'weight', 'menu_menu', 'expanded', 'tab_parent', 'tab_root', 'position',
-        'template', 'template_string', 'controller', 'variables', 'pattern'
+        'template', 'template_string', 'controller', 'variables', 'pattern', 'attached'
       ),
       'convert'      => array(
         'context'    => $parse_constant,
@@ -88,7 +88,11 @@ class Importer {
 
     if (!empty($item['template'])) {
       $item['page callback'] = '\Drupal\at_route\Controller\DefaultController::fileTemplateAction';
-      $item['page arguments'] = array('template'  => $item['template'], 'variables' => !empty($item['variables']) ? $item['variables'] : array());
+      $item['page arguments'] = array(
+        'template'  => $item['template'],
+        'variables' => !empty($item['variables']) ? $item['variables'] : array(),
+        'attached'  => !empty($item['attached']) ? $item['attached'] : array(),
+      );
     }
 
     if (!empty($item['template_string'])) {
@@ -96,7 +100,8 @@ class Importer {
       $item['page arguments'] = array(
         $item['pattern'],
         $item['template_string'],
-        !empty($item['variables']) ? $item['variables'] : array()
+        !empty($item['variables']) ? $item['variables'] : array(),
+        !empty($item['attached']) ? $item['attached'] : array(),
       );
     }
 
