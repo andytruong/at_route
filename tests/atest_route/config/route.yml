@@ -3,7 +3,7 @@ routes:
     title: Hello
     title callback: t
     title arguments: []
-    description: Description for the page
+    description: 'Description for the page'
     page callback: atest_route_page_callback
     page arguments: ['Andy Truong']
     access callback: user_access
@@ -32,16 +32,16 @@ routes:
   atest_route/controller:
     title: Hello
     access arguments: ['access content']
-    controller: [\Drupal\atest_route\Controller\HelloController, helloAction, {name: 'Andy Truong'}]
+    controller: ['\Drupal\atest_route\Controller\HelloController', helloAction, {name: 'Andy Truong'}]
 
   atest_route/template:
     title: Magic template
     access arguments: ['access content']
-    template: @atest_route/hello.html.twig
+    template: '@atest_route/hello.html.twig'
     variables:
         name: Andy Truong
 
-  atest_route/fancy_template/%user:
+  'atest_route/fancy_template/%user':
     title: Fancy Template
     access arguments: ['access content']
     template_string: '- Foo: {{ foo }}<br />- User ID: {{ user.uid }}<br />'
