@@ -39,7 +39,7 @@ before_script:
  - echo '#####################'
  - echo 'Install Drupal - Enable modules'
  - echo '#####################'
- - drush si testing --db-url=mysql://root:@localhost/drupal --yes
+ - drush si testing --db-url=mysql://root:@localhost/drupal --account-mail='travis@mailnator.com' --yes
  - drush en --yes simpletest at_route atest_route
  - drush cc all
  - sleep 3
