@@ -23,7 +23,7 @@ before_script:
  - echo 'Install Drupal - Enable modules'
  - echo '#####################'
  - drush si testing --db-url=mysql://root:@localhost/drupal --account-mail='travis@mailnator.com' --yes
- - drush dl at_require
+ - drush dl --package-handler=git_drupalorg at_require-7.x-1.x
  - drush en --yes at_require 
  - drush cc all
  - drush en --yes simpletest at_route atest_route
