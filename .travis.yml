@@ -25,6 +25,7 @@ before_script:
  - drush si testing --db-url=mysql://root:@localhost/drupal --account-mail='travis@mailnator.com' --yes
  - drush dl at_require
  - drush en --yes at_require 
+ - drush cc all
  - drush en --yes simpletest at_route atest_route
  - drush cc all
  - sleep 3
