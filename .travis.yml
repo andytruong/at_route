@@ -20,26 +20,11 @@ before_script:
  - ls -lah ../
  - mv ../andytruong/at_route sites/all/modules/
  - echo '#####################'
- - echo 'Clone required libraries'
- - echo '#####################'
- - mkdir -p sites/all/libraries
- - cd sites/all/libraries
- - echo ' ---------------------- '
- - echo '  For at_config module  '
- - echo ' ---------------------- '
- - composer require mustangostang/spyc:0.5.*
- - mv vendor/mustangostang/spyc ./
- - echo ' ----------------------- '
- - echo '  For at_theming module  '
- - echo ' ----------------------- '
- - composer require twig/twig:1.*
- - mv vendor/twig/twig ./
- - rm -rf ./vendor composer.*
- - cd ../../..
- - echo '#####################'
  - echo 'Install Drupal - Enable modules'
  - echo '#####################'
  - drush si testing --db-url=mysql://root:@localhost/drupal --account-mail='travis@mailnator.com' --yes
+ - drush dl at_require
+ - drush en --yes at_require 
  - drush en --yes simpletest at_route atest_route
  - drush cc all
  - sleep 3
