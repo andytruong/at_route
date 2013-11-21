@@ -30,6 +30,7 @@ before_script:
  - drush dl --package-handler=git_drupalorg at_theming-7.x-1.x
  - drush en --yes at_require
  - drush cc all
+ - drush at_require at_theming
  - drush en --yes simpletest at_route atest_route at_theming
  - drush cc all
  - sleep 3
