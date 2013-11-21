@@ -27,10 +27,11 @@ before_script:
  - drush dl --package-handler=git_drupalorg at_autoload-7.x-1.x
  - drush dl --package-handler=git_drupalorg at_config-7.x-1.x
  - drush dl --package-handler=git_drupalorg at_require-7.x-1.x
+ - drush dl --package-handler=git_drupalorg at_theming-7.x-1.x
  - drush en --yes at_require
  - drush cc all
- - drush en --yes simpletest at_route atest_route
+ - drush en --yes simpletest at_route atest_route at_theming
  - drush cc all
- - sleep 1
+ - sleep 3
 
 script: drush test-run 'AT Route'
