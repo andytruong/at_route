@@ -31,6 +31,6 @@ before_script:
  - drush cc all
  - drush en --yes simpletest at_route atest_route
  - drush cc all
- - sleep 3
+ - sleep 1
 
 script: drush test-run 'AT Route'
