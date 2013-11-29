@@ -9,28 +9,19 @@ mysql:
   encoding: utf8
 
 before_script:
- - cd ../..
- - mysql -e 'create database drupal;'
- - pear channel-discover pear.drush.org
- - pear install drush/drush-5.8.0
- - phpenv rehash
- - drush dl --yes drupal
- - cd drupal-*
- - pwd
- - ls -lah ../
- - mv ../andytruong/at_route sites/all/modules/
- - echo '#####################'
- - echo 'Install Drupal - Enable modules'
- - echo '#####################'
- - drush si testing --db-url=mysql://root:@localhost/drupal --account-mail='travis@mailnator.com' --yes
- - drush dl --package-handler=git_drupalorg at_base-7.x-1.x
- - drush dl --package-handler=git_drupalorg at_autoload-7.x-1.x
- - drush dl --package-handler=git_drupalorg at_config-7.x-1.x
- - drush dl --package-handler=git_drupalorg at_require-7.x-1.x
- - drush dl --package-handler=git_drupalorg at_theming-7.x-1.x
- - drush en --yes at_require
- - drush cc all
- - drush at_require at_theming
+
+ - #####################
+ - # Preinstall script
+ - #####################
+ - export DRUPAL=`pwd`'/drupal/'
+ - export PHP=`which php`
+ - curl -sS https://gist.github.com/andytruong/8ab6499fc984d05f56bb/raw/at_test.bash | bash
+ - #####################
+ - cd drupal
+ - mv ../andytruong/at_route sites/default/modules/
+ - #####################
+ - # Install Drupal - Enable modules
+ - #####################
  - drush en --yes simpletest at_route atest_route at_theming
  - drush cc all
  - sleep 3
