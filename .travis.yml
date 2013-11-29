@@ -18,7 +18,6 @@ before_script:
  - curl -sS https://gist.github.com/andytruong/8ab6499fc984d05f56bb/raw/at_test.bash | bash
  - #####################
  - cd drupal
- - mv ../andytruong/at_route sites/default/modules/
  - #####################
  - # Install Drupal - Enable modules
  - #####################
